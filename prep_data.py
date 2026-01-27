@@ -39,4 +39,5 @@ for book_utt in corpus_books_small.iter_utterances():
 corpus_comp = corpus_books_small.merge(corpus_circle, corpus_books_small)
 
 # save combined corpus
+# default location is: .convokit/saved-corpora
 corpus_comp.dump("corpus_comp")

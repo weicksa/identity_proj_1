@@ -1,7 +1,7 @@
-from convokit import Corpus, Classifier
+from convokit import Classifier
+from load_data import load_data
 
-filepath = "corpus_comp"
-corpus_comp = Corpus(filepath)
+corpus_comp = load_data("corpus_comp")
 
 cv_classifier_subreddit = Classifier(
     obj_type="utterance", pred_feats=["politeness_strategies"],

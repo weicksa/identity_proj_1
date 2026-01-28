@@ -1,4 +1,4 @@
-from convokit import Corpus, download, PolitenessStrategies, TextParser
+from convokit import Corpus, TextParser
 
 # since there is way less data in the r/bookscirclejerk corpus
 # and because of computational limits I trimmed the r/Books
@@ -22,12 +22,6 @@ parser = TextParser()
 corpus_books_small = parser.transform(corpus_books_small)
 corpus_circle = parser.transform(corpus_circle)
 
-# get PolitenessStrategies from convokit
-pol_strategies = PolitenessStrategies()
-
-corpus_books_small = pol_strategies.transform(corpus_books_small, markers=True)
-corpus_circle = pol_strategies.transform(corpus_circle)
-
 # label utterances in corpora,
 # 1 == r/bookscirclejerk, 0 == r/books
 for circ_utt in corpus_circle.iter_utterances():
@@ -36,8 +30,8 @@ for book_utt in corpus_books_small.iter_utterances():
     book_utt.meta["label"] = 0
 
 # combine corpora
-corpus_comp = corpus_books_small.merge(corpus_circle, corpus_books_small)
 
 # save combined corpus
 # default location is: .convokit/saved-corpora
-corpus_comp.dump("corpus_comp")
+corpus_books_small.dump("corpus_books_parsed")
+corpus_circle.dump("corpus_circle_parsed")
